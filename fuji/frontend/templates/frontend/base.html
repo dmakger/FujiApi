@@ -1,16 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static './css/base.css' %}">
 </head>
 <body>
-    {% include './block/header.html' %}
-    {% block body %}
-
-    {% endblock %}
-    {% include './block/footer.html' %}
+    {% block header %}{% endblock %}
+    {% block body %}{% endblock %}
+    {% block footer %}{% endblock %}
 
     {% block css %}{% endblock %}
 </body>

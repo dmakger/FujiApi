@@ -1,0 +1,134 @@
+header {
+    background-color: #6E4AFF;
+}
+
+header a {
+    color: #fff;
+}
+
+.block1 {
+    background-color: #6E4AFF;
+}
+
+.block1 .content {
+    margin: 100px 0 200px;
+}
+
+.block1 .content .text{
+    flex-direction: column;
+    margin-top: 30px;
+    margin-right: 35px;
+    color: #fff;
+}
+
+.block1 .content .text p{margin-top: 20px;}
+
+.block1 .content img{
+    width: 360px;
+    float: right;
+}
+
+.block2 {
+    background-color: #F7F7F8;
+}
+
+.block2 .content {
+    flex-direction: column;
+}
+
+.block2 .title {
+    margin: 70px auto 0;
+}
+
+.block2 h3 {
+    text-align: center;
+}
+.block2 .line {
+    background-color: black;
+    margin-left: 6px;
+    height: 10px;
+    width: 180px;
+}
+
+.cards {
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+
+.card {
+    margin-top: 40px;
+    padding: 100px 160px 85px;
+    background-color: #1F173F;
+    border-radius: 20px;
+    display: flex;
+}
+
+.card .text {
+    color: white;
+    float: left;
+    width: 440px;
+}
+
+.card .text p.description{
+    margin-top: 20px;
+    width: 440px;
+}
+
+.card .button{
+    display: flex;
+    margin-top: 40px;
+}
+.card .button a:hover {
+    transition: ease 0.3s;
+    background: #000;
+}
+
+.card .button a{
+    margin-top: 0px;
+    border-radius: 20px;
+    border: white 1px solid;
+    padding: 20px 60px;
+    color: white;
+}
+
+.block2 .card .img {
+    margin-left: auto;
+}
+
+.block2 .card.coorse img {
+    width: 330px;
+}
+
+.block2 .card.lecture img {
+    width: 370px;
+}
+
+.block2 .card.organization img {
+    width: 200px;
+}
+
+.block3 {
+    background-color: #6E4AFF;
+    color: #fff;
+}
+
+.block3 .content {
+    margin: 160px 0;
+}
+
+.block3 .text {
+    margin: auto 0;
+}
+
+.block3 .text p {
+    margin-top: 20px;
+}
+
+.block3 .text img {
+    height: 80px;
+    margin-top: 50px;
+}
+
+.block3 .img {
+    margin-left: auto;
+}

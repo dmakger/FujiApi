@@ -1,9 +1,96 @@
 {% extends './base.html' %}
+{% load static %}
 
 {% block title %} Fuji - правильно произносить "Фудзи" {% endblock %}
 
+{% block header %}
+  {% include './block/header.html' %}
+{% endblock %}
+
 {% block body %}
+  <div class="block1">
+    <div class="fixed-container">
+      <div class="content">
+        <div class="text">
+          <h2>Стань умнее вместе с FUJI</h2>
+          <p class="_big_">Правильно произносить «Фудзи»</p>
+        </div>
+        <img src="../../static/img/mountain.gif" alt="Очень красивая гора">
+      </div>
+    </div>
+  </div>
+  <div class="block2">
+    <div class="fixed-container">
+        <div class="content">
+          <div class="title">
+            <h3>Наши разделы</h3>
+            <div class="line"></div>
+          </div>
+          <div class="cards">
+            <div class="card coorse">
+              <div class="text">
+                <h5>Курсы</h5>
+                <p class="description">Серия из лекций позволяющая изучить какой-либо предмет или обучиться навыку</p>
+                <div class="button">
+                  <a href="/" class="button">Перейти</a>
+                </div>
+              </div>
 
-  <h1>Йооооооооооооооооу</h1>
+              <div class="img">
+                <img src="../../static/img/book.png" alt="Книга знаний">
+              </div>
+            </div>
+            <div class="card lecture">
+              <div class="text">
+                <h5>Лекции</h5>
+                <p class="description">Структурированный разбор темы</p>
+                <div class="button">
+                  <a href="/" class="button">Перейти</a>
+                </div>
+              </div>
 
+              <div class="img">
+                <img src="../../static/img/sheet.png" alt="Книга знаний">
+              </div>
+            </div>
+            <div class="card organization">
+              <div class="text">
+                <h5>Организации</h5>
+                <p class="description">Это люди, компании, школы, которые создают для вас весь контент (курсы, лекции)</p>
+                <div class="button">
+                  <a href="/" class="button">Перейти</a>
+                </div>
+              </div>
+
+              <div class="img">
+                <img src="../../static/img/pencil.png" alt="Книга знаний">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="block3 ">
+    <div class="fixed-container">
+      <div class="content">
+        <div class="text">
+          <h4>Изучайте курсы везде</h4>
+          <p class="_big_">FUJI доступен и на Android</p>
+          <img src="../../static/img/google_play.png" alt="Доступно в Google Play">
+        </div>
+        <div class="img">
+          <img src="../../static/img/android.png" alt="Великолепное приложение FUJI">
+        </div>
+      </div> 
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include './block/footer.html' %}
+{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static './css/home.css' %}">
 {% endblock %}
