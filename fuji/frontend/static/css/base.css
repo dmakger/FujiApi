@@ -37,7 +37,7 @@ h6 {font-size: 24px;}
 
 p._big_ {font-size: 24px;}
 p {font-size: 20px;}
-p._middle_ {font-size: 20px;}
+p._middle_ {font-size: 18px;}
 p._small_ {font-size: 16px;} 
 p._title_ {
     font-family: 'Montserrat-SemiBold', sans-serif;
@@ -110,7 +110,7 @@ header a.signin {
 
 header a.signin:hover{
     border: #fff 3px solid;
-    transition-duration: .1s;
+    transition-duration: .3s;
 }
 
 /*-----------------*/

@@ -1,0 +1,66 @@
+  {% extends './base.html' %}
+{% load static %}
+
+{% block title %} Fuji - правильно произносить "Фудзи" {% endblock %}
+
+{% block header %}
+  {% include './block/header.html' %}
+{% endblock %}
+
+{% block body %}
+  <div class="block1">
+    <div class="fixed-container">
+      <div class="content">
+        <h1 class="title">Курсы</h1>
+
+        <div class="search">
+          <form action="" method="get">
+            <input name="q" type="search" placeholder="Поиск...">
+            <div class="search__send">
+              <input type="submit" value="">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="block2">
+    <div class="fixed-container">
+      <div class="content">
+        <div id="sorting">
+          <span>
+            <p class="_middle_" id="sorting__popular">По популярности</p>
+            <img src="" alt="">
+          </span>
+          <span>
+            <p class="_middle_" id="sorting__raiting">По рейтингу</p>
+            <img src="" alt="">
+          </span>
+          <span>
+            <p class="_middle_" id="sorting__price">По цене</p>
+            <img src="" alt="">
+          </span>
+          <span>
+            <p class="_middle_" id="sorting__name">По названию</p>
+            <img src="" alt="">
+          </span>
+        </div>
+        <div id="courses">
+          <div class="course"></div>
+        </div>
+        <div id="filter">
+           
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  {% include './block/footer.html' %}
+{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static './css/course.css' %}">
+{% endblock %}

@@ -10,3 +10,11 @@ class MainView(View):
             request,
             'frontend/home.html'
         )
+
+
+class CourseView(View):
+    def get(self, request, *args, **kwargs):
+        return render(
+            request,
+            'frontend/course.html'
+        )

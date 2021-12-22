@@ -65,8 +65,6 @@ header a {
 }
 
 .card:hover {
-    /* padding-left: 100px; */
-    /* padding: 110px 140px 100px; */
     transform: scale(1.05);
 }
 
