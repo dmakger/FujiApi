@@ -37,6 +37,7 @@ h6 {font-size: 24px;}
 
 p._big_ {font-size: 24px;}
 p {font-size: 20px;}
+p._middle_ {font-size: 20px;}
 p._small_ {font-size: 16px;} 
 p._title_ {
     font-family: 'Montserrat-SemiBold', sans-serif;
@@ -68,13 +69,14 @@ header a {
 .content {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 header .navigation {
     font-size: 16px;
-    height: 100%;
     display: flex;
     margin-left: auto;
+    align-items: center;
 }
 
 a.logo {
@@ -84,13 +86,31 @@ a.logo {
     float: left;
 }
 
-header nav {
-    padding: 10px 18px;
+header .navigation a.menu {
+    margin: 0 18px;
+    border-bottom: #6E4AFF 2px solid;
+    transition-duration: .3s;
 }
 
-/* header nav > a.signin { */
-header nav.sign {
+header .navigation  a.menu:hover {
+    padding-bottom: 5px;
+    border-bottom: white 2px solid;
+    transition-duration: .3s;
+}
+
+header a.signin {
+    padding: 15px 30px;
+    border-radius: 40px;
+    background-color: #fff;
     margin-left: 34px;
+    color: #000;
+    transition-duration: .3s;
+    border: #6E4AFF 3px solid;
+}
+
+header a.signin:hover{
+    border: #fff 3px solid;
+    transition-duration: .1s;
 }
 
 /*-----------------*/
@@ -106,8 +126,21 @@ footer {
 
 footer a.logo {
     padding: 100px 120px;
-    background-color: #6E4AFF;
     color: #fff;
+    transition-duration: .3s;
+}
+
+.purple {
+    background-color: #6E4AFF;
+}
+.green {
+    background-color: #3ae374;
+}
+.blue {
+    background-color: #0abde3;
+}
+.red {
+    background-color: #ff6b6b;
 }
 
 footer .column {
@@ -124,6 +157,12 @@ footer .column.menu {
 footer .column a{
     margin-bottom: 20px;
     color: white;
+    transition-duration: .3s;
+}
+
+footer .column a:not(.title):hover {
+    color: #524C6D;
+    transition-duration: .1s;
 }
 
 footer .social-media {
