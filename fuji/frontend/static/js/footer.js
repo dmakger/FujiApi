@@ -1,13 +1,13 @@
 $(function(){
-    $('.case-logo .logo').mouseenter(function() {
+    $('footer .case-logo .logo').mouseenter(function() {
         var className = this.className
         if (className.indexOf('purple') != -1)
-            $('.purple').toggleClass('purple green')
+            $(this).toggleClass('purple green')
         else if (className.indexOf('green') != -1)
-            $('.green').toggleClass('green blue')
+            $(this).toggleClass('green blue')
         else if (className.indexOf('blue') != -1)
-            $('.blue').toggleClass('blue red')
+            $(this).toggleClass('blue red')
         else if (className.indexOf('red'))
-            $('.red').toggleClass('red purple')
+            $(this).toggleClass('red purple')
     })
 });

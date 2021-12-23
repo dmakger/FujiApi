@@ -48,8 +48,8 @@ p._description_ {
     font-size: 18px;
 }
 
-
 a { text-decoration: none; }
+
 
 header {
     padding-top: 40px;
@@ -130,16 +130,16 @@ footer a.logo {
     transition-duration: .3s;
 }
 
-.purple {
+footer .purple {
     background-color: #6E4AFF;
 }
-.green {
-    background-color: #3ae374;
+footer .green {
+    background-color: #2ED573;
 }
-.blue {
+footer .blue {
     background-color: #0abde3;
 }
-.red {
+footer .red {
     background-color: #ff6b6b;
 }
 

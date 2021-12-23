@@ -1,7 +1,7 @@
   {% extends './base.html' %}
 {% load static %}
 
-{% block title %} Fuji - правильно произносить "Фудзи" {% endblock %}
+{% block title %}Курсы - Fuji{% endblock %}
 
 {% block header %}
   {% include './block/header.html' %}
@@ -46,10 +46,50 @@
           </span>
         </div>
         <div id="courses">
-          <div class="course"></div>
+          {% for course in courses %}
+            <div class="course">
+              <img src="{{ course.image }}" alt="Изображение курса {{ course.title }}" class="image_title">
+              <div class="text">
+                <p class="_title_ title">{{ course.title }}</p>
+                <p class="_description_ author">{{ course.author_id }}</p>
+                <p class="_middle_ description">{{ course.description|truncatechars:120 }}</p>
+              </div>
+              <div class="row-info">
+                <div class="info">
+                  <div class="item rating">
+                    <img src="../../static/img/star.png" alt="Количество отзывов">
+                    <p class="_middle_">{{ course.rating }}</p>
+                  </div>
+                  <div class="item members_amount">
+                    <img src="../../static/img/people.png" alt="Количество людей записавшиеся на курс">
+                    <p class="_middle_">{{ course.members_amount }}</p>
+                  </div>
+                  <div class="item duration_in_minutes">
+                    <img src="../../static/img/clock.png" alt="Количество часов на прохождение">
+                    <p class="_middle_">{{ course.duration_in_minutes }}</p>
+                  </div>
+                  {% if course.has_certificate %}
+                    <div class="item certificate">
+                      <img src="../../static/img/certificate.png" alt="Сертификат">
+                      <p class="_middle_">сертификат</p>
+                    </div>
+                  {% endif %}
+                </div>
+                <span class="price">
+                  {% if course.price == 0 %}
+                    <p class="_middle_ green">Бесплатно</p>
+                  {% else %}
+                  <p class="_title_ purple">1000</p>
+                  <img src="../../static/img/rub.png" alt="Символ рубля">
+                  {% endif %}
+                </span>
+              </div>
+            </div>
+          {% endfor %}
         </div>
+
         <div id="filter">
-           
+            
         </div>
       </div>
     </div>
