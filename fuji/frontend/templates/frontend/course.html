@@ -45,9 +45,16 @@
             <img src="" alt="">
           </span>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="block3">
+    <div class="fixed-container">
+      <div class="content">
         <div id="courses">
           {% for course in courses %}
-            <div class="course">
+          <a href="#" class="course">
+            <div class="course__wrapper">
               <img src="{{ course.image }}" alt="Изображение курса {{ course.title }}" class="image_title">
               <div class="text">
                 <p class="_title_ title">{{ course.title }}</p>
@@ -57,20 +64,20 @@
               <div class="row-info">
                 <div class="info">
                   <div class="item rating">
-                    <img src="../../static/img/star.png" alt="Количество отзывов">
+                    <img src="../../static/img/star.svg" alt="Количество отзывов">
                     <p class="_middle_">{{ course.rating }}</p>
                   </div>
                   <div class="item members_amount">
-                    <img src="../../static/img/people.png" alt="Количество людей записавшиеся на курс">
+                    <img src="../../static/img/people.svg" alt="Количество людей записавшиеся на курс">
                     <p class="_middle_">{{ course.members_amount }}</p>
                   </div>
                   <div class="item duration_in_minutes">
-                    <img src="../../static/img/clock.png" alt="Количество часов на прохождение">
+                    <img src="../../static/img/clock.svg" alt="Количество часов на прохождение">
                     <p class="_middle_">{{ course.duration_in_minutes }}</p>
                   </div>
                   {% if course.has_certificate %}
                     <div class="item certificate">
-                      <img src="../../static/img/certificate.png" alt="Сертификат">
+                      <img src="../../static/img/certificate.svg" alt="Сертификат">
                       <p class="_middle_">сертификат</p>
                     </div>
                   {% endif %}
@@ -80,17 +87,40 @@
                     <p class="_middle_ green">Бесплатно</p>
                   {% else %}
                   <p class="_title_ purple">1000</p>
-                  <img src="../../static/img/rub.png" alt="Символ рубля">
+                  <img src="../../static/img/rub.svg" alt="Символ рубля">
                   {% endif %}
                 </span>
               </div>
             </div>
+          </a>
           {% endfor %}
         </div>
 
-        <div id="filter">
-            
+        <div id="filters">
+            <div class="filter" id="price">
+              <h6>Цена</h6>
+              <div class="item__radio item">
+                <input type="radio" id="price__all" name="price" value="1">
+                <label for="price__all"><p class="_middle_">Любая</p></label>
+                <input type="radio" id="price__free" name="price" value="2">
+                <label for="price__free"><p class="_middle_">Бесплатно</p></label>
+                <input type="radio" id="price__payable" name="price" value="3">
+                <label for="price__payable"><p class="_middle_">Платно</p></label>
+              </div>
+            </div>
+            <div class="filter" id="status">
+              <h6>Статус</h6>
+              <div class="item__checkbox item">
+                <input type="checkbox" id="checkbox__all" name="status" value="1">
+                <label for="checkbox__all"><p class="_middle_">Любая</p></label>
+                <input type="checkbox" id="checkbox__free" name="status" value="2">
+                <label for="checkbox__free"><p class="_middle_">Бесплатно</p></label>
+                <input type="checkbox" id="checkbox__payable" name="status" value="3">
+                <label for="checkbox__payable"><p class="_middle_">Платно</p></label>
+              </div>
+            </div>
         </div>
+
       </div>
     </div>
   </div>

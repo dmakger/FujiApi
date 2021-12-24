@@ -90,24 +90,36 @@ h1.title {
 }
 
 
+.block3 .content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
 #courses {
     width: 760px;
 }
 
-.course {
+.course__wrapper {
     /* width: 100%; */
     background-color: #fff;
     border-radius: 40px;
     padding: 30px;
     padding-bottom: 25px;
     margin-bottom: 70px;
+    color: #000;
+    transition-duration: .3s;
 }
 
-.course:not(:last-child) {
+.course__wrapper:not(:last-child) {
     margin-bottom: 40px;
 }
 
-.course .image_title {
+.course__wrapper:hover {
+    transition-duration: .2s;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.15);
+}
+
+.course__wrapper .image_title {
     width: 300px;
     height: 225px;
     border-radius: 40px;
@@ -116,24 +128,24 @@ h1.title {
     background-position: center;
 }
 
-.course .text {
+.course__wrapper .text {
     float: right;
     width: 370px;
 }
 
-.course .text .title {
+.course__wrapper .text .title {
     margin-top: 15px;
 }
 
-.course .text .author {
+.course__wrapper .text .author {
     margin-top: 10px;
 }
 
-.course .text .description {
+.course__wrapper .text .description {
     margin-top: 20px;
 }
 
-.course .row-info {
+.course__wrapper .row-info {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -141,35 +153,35 @@ h1.title {
     margin-bottom: 25px;
 }
 
-.course .info {
+.course__wrapper .info {
     display: flex;
     /* flex-wrap: wrap;
     align-content: flex-start; */
 }
 
-.course .info .item {
+.course__wrapper .info .item {
     display: flex;
 }
 
-.course .info .item:not(:last-child) {
+.course__wrapper .info .item:not(:last-child) {
     margin-right: 40px;
 }
 
-.course .info .item img {
+.course__wrapper .info .item img {
     width: 22px;
     height: 22px;
 }
 
-.course .info .item p {
+.course__wrapper .info .item p {
     margin-left: 10px;
 }
 
-.course .price {
+.course__wrapper .price {
     display: flex;
     margin-left: auto;
 }
 
-.course .price img {
+.course__wrapper .price img {
     width: 22px;
     height: 22px;
     margin: auto 0;
@@ -181,4 +193,108 @@ h1.title {
 
 .purple {
     color: #5758BB;
+}
+
+#filters {
+    margin-left: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 50px;
+
+    position: sticky;
+    top: 20px;     
+}
+
+#filters .item:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+#filters .item {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* для элементов input */
+#filters .item input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+/* для элемента label*/
+#filters .item input + label {
+    display: inline-flex;
+    user-select: none;
+    margin-top: 15px;
+    max-width: 220px;
+}
+
+/* создание псевдо input'a */
+#filters .item input + label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* input[radio] загругление границ */
+#filters .item__radio input + label::before {
+    border-radius: 50%;
+    background-size: 12px;
+}
+
+/* input[checkbox] загругление границ */
+#filters .item__checkbox input + label::before {
+    border-radius: 3px;
+}
+
+/* При наведение на input */
+#filters .item input:not(:disabled):not(:checked) + label:hover::before {
+    /* border-color: #6E4AFF; */
+    border-color: #000;
+}
+
+/* Для активной input (при нажатии на неё) */
+#filters .item input:not(:disabled):active + label::before {
+    border-color: #6E4AFF;
+    background-color: #6E4AFF;
+}
+
+/* input после фокуса */
+#filters .item input:focus + label::before {
+    box-shadow: 0 0 0 0.2rem rgba(159, 139, 238, 0.25);
+  }
+
+/* Для input находящейся в фокусе и не находящейся в состоянии checked */
+#filters .item input:focus:not(:checked) + label::before {
+    border-color: #9f8bee;
+}
+
+/* input в состоянии checked */
+#filters .item input:checked + label::before {
+    border-color: #000;
+    background-color: #fff;
+}
+
+/* input[radio] внутренний изображение внутри input */
+#filters .item__radio input:checked + label::before {
+    background-image: url("../img/ellipse_purple.png");
+}
+
+/* input[checkbox] внутренний изображение внутри input */
+#filters .item__checkbox input:checked + label::before {
+    background-image: url("../img/checkbox_active.png");
+}
+
+/* input в состоянии disabled */
+#filters .item input:disabled + label::before {
+    background-color: #e9ecef;
 }

@@ -154,7 +154,8 @@ footer .column.menu {
 }
 
 
-footer .column a{
+footer .column a,
+footer .column p._title_{
     margin-bottom: 20px;
     color: white;
     transition-duration: .3s;

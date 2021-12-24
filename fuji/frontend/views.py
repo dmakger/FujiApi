@@ -18,6 +18,7 @@ class CourseView(View):
         courses = list()
         for course in Course.objects.all():
             course.duration_in_minutes = self.get_duration(course.duration_in_minutes)
+            course.rating = self.get_rating(course.rating)
             courses.append(course)
 
         return render(request, 'frontend/course.html', context={
@@ -25,10 +26,13 @@ class CourseView(View):
         })
 
     def get_duration(self, minutes):
-        hours = round(minutes / 60, 1)
-        if hours % 1 == 0:
-            hours = int(hours)
-        return f"{hours} ч"
+        return f"{round(minutes / 60)} ч"
+
+    def get_rating(self, rating):
+        rating_int = int(rating)
+        if rating_int == rating:
+            return rating_int
+        return rating
 
 # # class MainView(View):
 # #     def get(self, request, *args, **kwargs):
