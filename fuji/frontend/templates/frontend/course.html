@@ -1,4 +1,4 @@
-  {% extends './base.html' %}
+{% extends './base.html' %}
 {% load static %}
 
 {% block title %}Курсы - Fuji{% endblock %}
@@ -96,29 +96,31 @@
           {% endfor %}
         </div>
 
-        <div id="filters">
-            <div class="filter" id="price">
-              <h6>Цена</h6>
-              <div class="item__radio item">
-                <input type="radio" id="price__all" name="price" value="1">
-                <label for="price__all"><p class="_middle_">Любая</p></label>
-                <input type="radio" id="price__free" name="price" value="2">
-                <label for="price__free"><p class="_middle_">Бесплатно</p></label>
-                <input type="radio" id="price__payable" name="price" value="3">
-                <label for="price__payable"><p class="_middle_">Платно</p></label>
+        <div class="wrapper-filters">
+          <div id="filters">
+              <div class="filter" id="price">
+                <h6>Цена</h6>
+                <div class="item__radio item">
+                  <input type="radio" id="price__all" name="price" value="1" checked>
+                  <label for="price__all"><p class="_middle_">Любая</p></label>
+                  <input type="radio" id="price__free" name="price" value="2">
+                  <label for="price__free"><p class="_middle_">Бесплатно</p></label>
+                  <input type="radio" id="price__payable" name="price" value="3">
+                  <label for="price__payable"><p class="_middle_">Платно</p></label>
+                </div>
               </div>
-            </div>
-            <div class="filter" id="status">
-              <h6>Статус</h6>
-              <div class="item__checkbox item">
-                <input type="checkbox" id="checkbox__all" name="status" value="1">
-                <label for="checkbox__all"><p class="_middle_">Любая</p></label>
-                <input type="checkbox" id="checkbox__free" name="status" value="2">
-                <label for="checkbox__free"><p class="_middle_">Бесплатно</p></label>
-                <input type="checkbox" id="checkbox__payable" name="status" value="3">
-                <label for="checkbox__payable"><p class="_middle_">Платно</p></label>
+              <div class="filter" id="status">
+                <h6>Статус</h6>
+                <div class="item__checkbox item">
+                  <input type="checkbox" id="checkbox__all" name="status" value="1">
+                  <label for="checkbox__all"><p class="_middle_">Не добавленное</p></label>
+                  <input type="checkbox" id="checkbox__free" name="status" value="2">
+                  <label for="checkbox__free"><p class="_middle_">Добавленное</p></label>
+                  <input type="checkbox" id="checkbox__payable" name="status" value="3">
+                  <label for="checkbox__payable"><p class="_middle_">Пройденное</p></label>
+                </div>
               </div>
-            </div>
+          </div>
         </div>
 
       </div>

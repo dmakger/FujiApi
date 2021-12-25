@@ -1,0 +1,67 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}Курсы - Fuji{% endblock %}
+
+
+
+{% block body %}
+
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="content">
+        <div class="wrapper">
+            <form action="{% url 'signup' %}" method="post" class="form">
+                {% csrf_token %}
+                <label for="input-username" class="l-username">Ваш логин</label>
+                {{ form.username }}
+                <label for="input-name" class="l-name">Ваше имя</label>
+                {{ form.name }}
+                <label for="input-last_name" class="l-last_name">Ваша фамилия</label>
+                {{ form.last_name }}
+                <label for="input-password" class="l-password">Ваш пароль</label>
+                {{ form.password }}
+                <label for="input-repassword" class="l-repassword">Повторите пароль</label>
+                {{ form.repassword }}
+                <label for="input-mail" class="l-mail">Ваш E-mail</label>
+                {{ form.mail }}
+                <button type="submit">Создать аккаунт</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- <div class="content">
+        <form action="{% url 'signup' %}" method="post" class="sign_up">
+            {% csrf_token %}
+            <h1 class="h-register">Регистрация</h1>
+            <label for="inputUsername" class="l-login"></label>
+            {{ form.username }}
+            <label for="inputPassword" class="l-password"></label>
+            {{ form.password }}
+            <label for="reInputPassword" class="l-repassword"></label>
+            {{ form.repeat_password }}
+            <label for="inputGroup" class="l-group"></label>
+            {{ form.group }}
+            <button type="submit">Регистрация</button>
+        </form>
+    </div> -->
+
+    {% endblock %}
+    
+    {% block css %}
+      {{ block.super }}
+      <link rel="stylesheet" href="{% static './css/signup.css' %}">
+    {% endblock %}

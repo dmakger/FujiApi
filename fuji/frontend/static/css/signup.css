@@ -1,0 +1,56 @@
+body {
+    height: 100%;
+    background-image: url(../img/auth_background2.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content {
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    /* background-color: #fff; */
+    background-color: #1F173F;
+    margin: auto;
+    padding: 100px 100px;
+}
+
+.wrapper .form {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper .form label {
+    font-family: 'Montserrat-SemiBold';
+    /* font-size: 16px; */
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.wrapper .form input {
+    width: 300px;
+    margin-bottom: 20px;
+    padding: 15px 30px;
+    border-radius: 40px;
+    font-family: 'Montserrat';
+    color: #fff;
+    font-size: 16px;
+    background-color: #1F173F;
+    border: #524C6D 2px solid;
+}
+
+.wrapper .form button {
+    margin-top: 20px;
+    font-family: 'Montserrat-Medium';
+    font-size: 16px;
+    padding: 20px 30px;
+    border-radius: 40px;
+    background-color: #6E4AFF;
+    color: #fff;
+    transition-duration: .3s;
+    border: #6E4AFF 3px solid;
+}

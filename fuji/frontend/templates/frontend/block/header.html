@@ -3,10 +3,18 @@
         <a href="/" class="logo">FUJI</a>
 
         <div class="navigation">
-            <a href="course" class="navigation__course menu">Курсы</a>
+            <a href="{% url 'course' %}" class="navigation__course menu">Курсы</a>
             <a href="/" class="navigation__lecture menu">Лекции</a>
             <a href="/" class="navigation__organization menu">Организации</a>
         </div>
-        <a href="/" class="signin">Войти</a>
+        <a href="{% url 'signup' %}" class="signin">Регистрация</a>
+<!--        <a href="/" class="signin">Войти</a>-->
+<!--        {% if user.is_authenticated %}-->
+<!--            <p class="login">{{ user }}</p>-->
+<!--&lt;!&ndash;            <a href="{% url 'signout' %}" class="sign_out">Выход</a>&ndash;&gt;-->
+<!--        {% else %}-->
+<!--&lt;!&ndash;            <a href="{% url 'signin' %}" class="sign_in">Вход</a>&ndash;&gt;-->
+<!--            <a href="{% url 'signup' %}" class="sign_up">Регистрация</a>-->
+<!--        {% endif %}-->
     </div>
 </header>
