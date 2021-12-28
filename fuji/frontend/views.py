@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.views import View
 from .models import Course
-from .forms import SignUpForm
+from .forms import SignUpForm, SignInForm
 
 
 class MainView(View):
@@ -19,6 +19,15 @@ class SignUpView(View):
     def get(self, request, *args, **kwargs):
         form = SignUpForm()
         return render(request, "frontend/signup.html", context={
+            'form': form
+        })
+
+
+class SignInView(View):
+    """Вход"""
+    def get(self, request, *args, **kwargs):
+        form = SignInForm()
+        return render(request, "frontend/signin.html", context={
             'form': form
         })
 

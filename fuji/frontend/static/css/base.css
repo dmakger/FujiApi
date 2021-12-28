@@ -39,6 +39,10 @@ p._big_ {font-size: 24px;}
 p {font-size: 20px;}
 p._middle_ {font-size: 18px;}
 p._small_ {font-size: 16px;} 
+p._mini_ {
+    font-family: 'Montserrat-SemiBold', sans-serif;
+    font-size: 14px;
+} 
 p._title_ {
     font-family: 'Montserrat-SemiBold', sans-serif;
     font-size: 24px;

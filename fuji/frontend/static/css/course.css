@@ -258,7 +258,6 @@ h1.title {
 
 /* При наведение на input */
 #filters .item input:not(:disabled):not(:checked) + label:hover::before {
-    /* border-color: #6E4AFF; */
     border-color: #000;
 }
 

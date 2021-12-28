@@ -1,7 +1,7 @@
 {% extends './base.html' %}
 {% load static %}
 
-{% block title %}Регистрация - Fuji{% endblock %}
+{% block title %}Вход - Fuji{% endblock %}
 
 
 
@@ -23,30 +23,21 @@
     {% endif %}
 
     <div class="content">
-        <!-- <h5 class="logo"><a href="{% url 'home' %}" class="logo">FUJ</a>I</h5> -->
         <div class="wrapper">
             <div class="case-logo">
                 <h5 class="logo"><a href="{% url 'home' %}" class="logo">FUJ</a>I</h5>
             </div>
             <div class="switch-sign">
-                <a href="{% url 'signin' %}" class="switch__sign-in"><p class="_mini_">Вход</p></a>
-                <a href="#" class="switch__sign-up"><p class="_mini_">Создать аккаунт</p></a>
+                <a href="#" class="switch__sign-in"><p class="_mini_">Вход</p></a>
+                <a href="{% url 'signup' %}" class="switch__sign-up"><p class="_mini_">Создать аккаунт</p></a>
             </div>
             <form action="{% url 'signup' %}" method="post" class="form">
                 {% csrf_token %}
                 <label for="input-username" class="l-username">Ваш логин</label>
                 {{ form.username }}
-                <label for="input-name" class="l-name">Ваше имя</label>
-                {{ form.name }}
-                <label for="input-last_name" class="l-last_name">Ваша фамилия</label>
-                {{ form.last_name }}
                 <label for="input-password" class="l-password">Ваш пароль</label>
                 {{ form.password }}
-                <label for="input-repassword" class="l-repassword">Повторите пароль</label>
-                {{ form.repassword }}
-                <label for="input-mail" class="l-mail">Ваш E-mail</label>
-                {{ form.mail }}
-                <button type="submit">Создать аккаунт</button>
+                <button type="submit">Войти</button>
             </form>
         </div>
     </div>
@@ -72,5 +63,5 @@
     {% block css %}
       {{ block.super }}
       <link rel="stylesheet" href="{% static './css/sign.css' %}">
-      <link rel="stylesheet" href="{% static './css/signup.css' %}">
+      <link rel="stylesheet" href="{% static './css/signin.css' %}">
     {% endblock %}
