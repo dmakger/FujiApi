@@ -1,12 +1,18 @@
-from django.urls import path
+from django.urls import path, re_path
 
-from .views import MainView, CourseView, SignUpView, SignInView
+from .views import MainView, CourseView
+from .views import SignUpView, SignInView
 from django.contrib.auth.views import LogoutView
+from django.views.generic.base import RedirectView
+
+
+favicon_view = RedirectView.as_view(url='/static/img/favicon.ico', permanent=True)
 
 urlpatterns = [
     path('', MainView.as_view(), name='home'),
     path('sign-in/', SignInView.as_view(), name='signin'),
     path('sign-up/', SignUpView.as_view(), name='signup'),
     path('signout/', LogoutView.as_view(), name='signout'),
-    path('course/', CourseView.as_view(), name='course')
+    path('course/', CourseView.as_view(), name='course'),
+    re_path(r'^favicon\.ico$', favicon_view),
 ]

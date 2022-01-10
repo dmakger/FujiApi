@@ -6,32 +6,30 @@
 
 
 {% block body %}
-
-    {% if form.errors %}
-        {% for field in form %}
-            {% for error in field.errors %}
-                <div class="alert-danger">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-            <div class="alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
-
     <div class="content">
         <div class="wrapper">
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="case-logo">
-                <h5 class="logo"><a href="{% url 'home' %}" class="logo">FUJ</a>I</h5>
+                <a href="{% url 'home' %}" class="logo"><h5 class="logo">FUJ</h5>I</a>
             </div>
             <div class="switch-sign">
                 <a href="#" class="switch__sign-in"><p class="_mini_">Вход</p></a>
                 <a href="{% url 'signup' %}" class="switch__sign-up"><p class="_mini_">Создать аккаунт</p></a>
             </div>
-            <form action="{% url 'signup' %}" method="post" class="form">
+            <form action="{% url 'signin' %}" method="post" class="form">
                 {% csrf_token %}
                 <label for="input-username" class="l-username">Ваш логин</label>
                 {{ form.username }}
@@ -42,21 +40,7 @@
         </div>
     </div>
 
-    <!-- <div class="content">
-        <form action="{% url 'signup' %}" method="post" class="sign_up">
-            {% csrf_token %}
-            <h1 class="h-register">Регистрация</h1>
-            <label for="inputUsername" class="l-login"></label>
-            {{ form.username }}
-            <label for="inputPassword" class="l-password"></label>
-            {{ form.password }}
-            <label for="reInputPassword" class="l-repassword"></label>
-            {{ form.repeat_password }}
-            <label for="inputGroup" class="l-group"></label>
-            {{ form.group }}
-            <button type="submit">Регистрация</button>
-        </form>
-    </div> -->
+    <script src="../../../static/js/input.js"></script>
 
     {% endblock %}
     

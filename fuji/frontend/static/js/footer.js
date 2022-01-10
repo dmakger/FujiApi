@@ -10,4 +10,4 @@ $(function(){
         else if (className.indexOf('red'))
             $(this).toggleClass('red purple')
     })
-});
+})

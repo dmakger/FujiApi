@@ -39,6 +39,7 @@ p._big_ {font-size: 24px;}
 p {font-size: 20px;}
 p._middle_ {font-size: 18px;}
 p._small_ {font-size: 16px;} 
+p._small-2_ {font-size: 12px;} 
 p._mini_ {
     font-family: 'Montserrat-SemiBold', sans-serif;
     font-size: 14px;
@@ -70,6 +71,12 @@ header a {
     display: flex;
 }
 
+.fixed-container-big {
+    display: flex;
+    /* padding: 0 100px; */
+    margin: 0 200px;
+}
+
 .content {
     display: flex;
     width: 100%;
@@ -81,6 +88,7 @@ header .navigation {
     display: flex;
     margin-left: auto;
     align-items: center;
+    height: 54px;
 }
 
 a.logo {
@@ -88,6 +96,7 @@ a.logo {
     font-size: 36px;
     letter-spacing: 0.6em;
     float: left;
+    height: 54px;
 }
 
 header .navigation a.menu {
@@ -115,6 +124,61 @@ header a.signin {
 header a.signin:hover{
     border: #fff 3px solid;
     transition-duration: .3s;
+}
+
+header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 34px;
+    margin-right: 20px;
+}
+
+#sign {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+#sign__setting {
+    margin-top: -20px;
+    background-color: #1F173F;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    border-radius: 20px;
+    padding: 20px;
+    color: #fff;
+    display: none;
+}
+
+#sign__setting .info {
+    display: flex;
+}
+
+#sign__setting img {
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+#sign__setting a {
+    color: #fff;
+}
+
+#sign__setting .name {
+    display: flex;
+}
+
+#sign__setting .last_name {
+    margin-left: 5px;
+}
+
+#sign__setting p.mail {
+    margin-top: 2px;
+}
+
+#sign__setting .nav p {
+    margin-top: 5px;
 }
 
 /*-----------------*/

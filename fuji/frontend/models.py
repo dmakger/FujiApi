@@ -65,50 +65,54 @@ class Step(models.Model):
         return self.title
 
 
-class Profile(models.Model):
-    """
-    Пользователь
-    """
-    # Расширение класса User (login, password, first_name, last_name)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=20)
-    last_name = models.CharField(max_length=20)
-    avatar_url = models.URLField()
-    mail = models.EmailField(max_length=50)
-    about_me_text = models.TextField()
+# class Profile(models.Model):
+#     """
+#     Пользователь
+#     """
+#     # Расширение класса User (login, password, first_name, last_name)
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=20)
+#     last_name = models.CharField(max_length=20)
+#     avatar_url = models.URLField()
+#     mail = models.EmailField(max_length=50)
+#     about_me_text = models.TextField()
+#
+#     def __str__(self):
+#         return f'{self.name}_{self.last_name}'
+#
+#     @property
+#     def user(self):
+#         return User.objects.get(pk=self.user_id)
 
-    def __str__(self):
-        return f'{self.name}_{self.last_name}'
-
-
-class UserToCourse(models.Model):
-    """
-    Пользователь к курсу. Какие курсы проходит пользователь
-    """
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    progress_points = models.IntegerField()
-
-
-class UserToModule(models.Model):
-    """
-    Пользователь к Модулю. Какой модуль в курсе проходит пользователь
-    """
-    module_id = models.ForeignKey(Module, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-
-class UserToLesson(models.Model):
-    """
-    Пользователь к Уроку. Какой урок в курсе проходит пользователь
-    """
-    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-
-class UserToStep(models.Model):
-    """
-    Пользователь к Степу. Какой степ в курсе проходит пользователь
-    """
-    step_id = models.ForeignKey(Step, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#
+# class UserToCourse(models.Model):
+#     """
+#     Пользователь к курсу. Какие курсы проходит пользователь
+#     """
+#     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     progress_points = models.IntegerField()
+#
+#
+# class UserToModule(models.Model):
+#     """
+#     Пользователь к Модулю. Какой модуль в курсе проходит пользователь
+#     """
+#     module_id = models.ForeignKey(Module, on_delete=models.CASCADE)
+#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#
+#
+# class UserToLesson(models.Model):
+#     """
+#     Пользователь к Уроку. Какой урок в курсе проходит пользователь
+#     """
+#     lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#
+#
+# class UserToStep(models.Model):
+#     """
+#     Пользователь к Степу. Какой степ в курсе проходит пользователь
+#     """
+#     step_id = models.ForeignKey(Step, on_delete=models.CASCADE)
+#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)

@@ -1,4 +1,5 @@
 <header>
+    <!-- <div class="fixed-container-big"> -->
     <div class="fixed-container">
         <a href="/" class="logo">FUJI</a>
 
@@ -7,14 +8,32 @@
             <a href="/" class="navigation__lecture menu">Лекции</a>
             <a href="/" class="navigation__organization menu">Организации</a>
         </div>
-        <a href="{% url 'signin' %}" class="signin">Вход</a>
-<!--        <a href="/" class="signin">Войти</a>-->
-<!--        {% if user.is_authenticated %}-->
-<!--            <p class="login">{{ user }}</p>-->
-<!--&lt;!&ndash;            <a href="{% url 'signout' %}" class="sign_out">Выход</a>&ndash;&gt;-->
-<!--        {% else %}-->
-<!--&lt;!&ndash;            <a href="{% url 'signin' %}" class="sign_in">Вход</a>&ndash;&gt;-->
+        <div id="sign">
+        {% if user.is_authenticated %}
+                <div id="sign__avatar">
+                    <img src="{{ user.profile.avatar_url }}" alt="Аватар" class="avatar">
+                </div>
+                <div id="sign__setting">
+                    <div class="info">
+                        <div class="info__text">
+                            <div class="name">
+                                <p class="first_name _small_">{{ user.profile.name }}</p>
+                                <p class="last_name _small_">{{ user.profile.last_name }}</p>
+                            </div>
+                            <p class="mail _small-2_">{{ user.profile.mail }}</p>
+                        </div>
+                        <img src="{{ user.profile.avatar_url }}" alt="Аватар" class="avatar">
+                    </div>
+                    <div class="nav">
+                        <a href="#" class="setting"><p class="_description_">Настройки</p></a>
+                        <a href="{% url 'signout' %}" class="signout"><p class="_description_">Выход</p></a>
+                    </div>
+                </div>
+        {% else %}
+            <a href="{% url 'signin' %}" class="signin">Вход</a>
 <!--            <a href="{% url 'signup' %}" class="sign_up">Регистрация</a>-->
-<!--        {% endif %}-->
+        {% endif %}
+        </div>
+        <script src="../../../static/js/header.js"></script>
     </div>
 </header>
