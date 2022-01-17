@@ -1,0 +1,3 @@
+PassengerEnabled On
+#PassengerPython /home/s/dmakger/.local/bin/python3.9
+PassengerPython /home/s/dmakger/dmakger.beget.tech/djangoenv/bin/python3.9

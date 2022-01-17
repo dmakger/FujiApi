@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 from rest_framework.response import Response
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, generics, pagination
 
 from .serializers import CourseSerializer
 from .serializers import RegisterSerializer, UserSerializer, ProfileSerializer
@@ -8,10 +8,17 @@ from .serializers import RegisterSerializer, UserSerializer, ProfileSerializer
 from .models import Course, Profile
 
 
+class PageNumberSetPagination(pagination.PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    ordering = 'created_at'
+
+
 class CourseViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.AllowAny]
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    permission_classes = [permissions.AllowAny]
+    pagination_class = PageNumberSetPagination
 
 
 class RegisterView(generics.GenericAPIView):
@@ -36,5 +43,17 @@ class ProfileView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProfileSerializer
 
-    # def get(self):
+    def get(self, request, *args, **kwargs):
+        return Response({
+            "profile": ProfileSerializer(request.user.profile, context=self.get_serializer_context()).data
+        })
 
+
+class UserView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        return Response({
+            "user": UserSerializer(request.user, context=self.get_serializer_context()).data
+        })
