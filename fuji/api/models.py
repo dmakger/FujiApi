@@ -3,6 +3,21 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+
+
+class Profile(models.Model):
+    """
+    Пользователь
+    """
+    # Расширение класса User (login, password, first_name, last_name)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar_url = models.ImageField(default="default.jpg")
+    about_me_text = models.TextField(blank=True, default="")
+
+    def __str__(self):
+        return f'{self.user}'
+
+
 class Author(models.Model):
     """
     Автор курса
@@ -30,6 +45,57 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class CourseInfo(models.Model):
+    """
+    Страница курса
+    """
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    goal_description = models.TextField()
+
+    def __str__(self):
+        return self.course.title
+
+
+class CourseFit(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return f'{self.course_info.course.title}:  ({self.title})'
+
+
+class CourseSkill(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'{self.course_info.course.title}:  ({self.name})'
+
+
+class CourseStars(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    five_stars_count = models.IntegerField(default=0)
+    four_stars_count = models.IntegerField(default=0)
+    three_stars_count = models.IntegerField(default=0)
+    two_stars_count = models.IntegerField(default=0)
+    one_stars_count = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.course_info.course.title
+
+
+class CourseComment(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField()
+    stars_count = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.course_info.course.title}:  ({self.user.user.username})'
 
 
 class Module(models.Model):
@@ -64,19 +130,6 @@ class Step(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Profile(models.Model):
-    """
-    Пользователь
-    """
-    # Расширение класса User (login, password, first_name, last_name)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar_url = models.ImageField(default="http://localhost:8000/media/logo-person.jpg")
-    about_me_text = models.TextField(blank=True, default="")
-
-    def __str__(self):
-        return f'{self.pk}'
 
 
 class UserToCourse(models.Model):

@@ -1,0 +1,21 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block title %}{{ course. }}{% endblock %}
+
+{% block header %}
+  {% include './block/header.html' %}
+{% endblock %}
+
+{% block body %}
+<h1>Bruh</h1>
+{% endblock %}
+
+{% block footer %}
+  {% include './block/footer.html' %}
+{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+<!--  <link rel="stylesheet" href="{% static './css/course.css' %}">-->
+{% endblock %}

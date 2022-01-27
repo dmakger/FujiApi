@@ -1,11 +1,14 @@
 # from django.shortcuts import render
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import get_object_or_404
+from django.urls import path
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, generics, pagination
 
-from .serializers import CourseSerializer
+from .serializers import CourseSerializer, CourseInfoSerializer
 from .serializers import RegisterSerializer, UserSerializer, ProfileSerializer
 
-from .models import Course, Profile
+from .models import Course, Profile, CourseInfo
 
 
 class PageNumberSetPagination(pagination.PageNumberPagination):
@@ -15,10 +18,25 @@ class PageNumberSetPagination(pagination.PageNumberPagination):
 
 
 class CourseViewSet(viewsets.ModelViewSet):
-    serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
     pagination_class = PageNumberSetPagination
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return CourseSerializer
+        elif self.action == 'retrieve':
+            return CourseInfoSerializer
+
+    def retrieve(self, request, pk=None, *args, **kwargs):
+        course = Course.objects.get(pk=pk)
+        serializer = CourseSerializer(course)
+        course_info = serializer.get_info(pk)
+        return Response({
+            "course": serializer.data,
+            "info": course_info
+        })
 
 
 class RegisterView(generics.GenericAPIView):
@@ -29,23 +47,9 @@ class RegisterView(generics.GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        user_data = UserSerializer(user, context=self.get_serializer_context()).data
-        profile = Profile.objects.get(user=user_data['id'])
-        profile_data = ProfileSerializer(profile, context=self.get_serializer_context()).data
         return Response({
-            'user': user_data,
-            'profile': profile_data,
+            'user': UserSerializer(user, context=self.get_serializer_context()).data,
             'message': "Пользователь успешно создан"
-        })
-
-
-class ProfileView(generics.GenericAPIView):
-    permission_classes = [permissions.IsAuthenticated]
-    serializer_class = ProfileSerializer
-
-    def get(self, request, *args, **kwargs):
-        return Response({
-            "profile": ProfileSerializer(request.user.profile, context=self.get_serializer_context()).data
         })
 
 
@@ -55,5 +59,5 @@ class UserView(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         return Response({
-            "user": UserSerializer(request.user, context=self.get_serializer_context()).data
+            "user": UserSerializer(request.user, context=self.get_serializer_context()).data,
         })

@@ -102,7 +102,7 @@ DATABASES = {
         # 'NAME': BASE_DIR / 'db.sqlite3',
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fuji_db',
+        'NAME': 'fuji',
         'USER': 'postgres',
         'PASSWORD': '1758Elephant',
         'HOST': 'localhost',

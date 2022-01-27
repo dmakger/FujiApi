@@ -5,7 +5,7 @@ from django.http.response import HttpResponseRedirect
 
 # Create your views here.
 from django.views import View
-from .models import Course
+from .models import Course, CourseInfo
 # from .models import Profile
 from .forms import SignUpForm, SignInForm
 
@@ -78,10 +78,12 @@ class CourseView(View):
             course.duration_in_minutes = self.get_duration(course.duration_in_minutes)
             course.rating = self.get_rating(course.rating)
             courses.append(course)
+            print(course.image)
         # courses = [courses[0]]
-        for i in range(5):
-            courses.append(courses[0])
-            courses.append(courses[1])
+        if len(courses):
+            for i in range(5):
+                courses.append(courses[0])
+                courses.append(courses[1])
 
         return render(request, 'frontend/course.html', context={
             'courses': courses
@@ -95,3 +97,16 @@ class CourseView(View):
         if rating_int == rating:
             return rating_int
         return rating
+
+
+class CourseDetailView(View):
+    def get(self, request, pk, *args, **kwargs):
+        print(pk)
+        course = get_object_or_404(Course, pk=pk)
+        print(course)
+        course_info = get_object_or_404(CourseInfo, course=pk)
+
+        return render(request, 'frontend/course_detail.html', context={
+            'course': course,
+            'course_info': course_info
+        })

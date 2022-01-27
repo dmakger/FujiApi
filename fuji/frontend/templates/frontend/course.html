@@ -55,11 +55,15 @@
           {% for course in courses %}
           <a href="#" class="course">
             <div class="course__wrapper">
-              <img src="{{ course.image }}" alt="Изображение курса {{ course.title }}" class="image_title">
-              <div class="text">
-                <p class="_title_ title">{{ course.title }}</p>
-                <p class="_description_ author">{{ course.author_id }}</p>
-                <p class="_middle_ description">{{ course.description|truncatechars:120 }}</p>
+              <div class="main-info">
+                <div class="wrapper__image">
+                  <img src="http://localhost:8000/media/{{ course.image }}" alt="Изображение курса {{ course.title }}" class="image_title">
+                </div>
+                <div class="text">
+                  <p class="_title_ title">{{ course.title }}</p>
+                  <p class="_description_ author">{{ course.author }}</p>
+                  <p class="_middle_ description">{{ course.description|truncatechars:120 }}</p>
+                </div>
               </div>
               <div class="row-info">
                 <div class="info">

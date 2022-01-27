@@ -2,6 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+from django.db import models
+from django.contrib.auth.models import User
+
+
+# Create your models here.
 class Author(models.Model):
     """
     Автор курса
@@ -19,8 +24,8 @@ class Course(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     price = models.IntegerField()
-    author_id = models.ForeignKey(Author, on_delete=models.CASCADE)
-    image = models.URLField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    image = models.ImageField()
     duration_in_minutes = models.IntegerField()
     rating = models.FloatField(default=0)
     members_amount = models.IntegerField(default=0)
@@ -31,11 +36,50 @@ class Course(models.Model):
         return self.title
 
 
+class CourseInfo(models.Model):
+    """
+    Страница курса
+    """
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    goal_description = models.TextField()
+
+    def __str__(self):
+        return self.course.title
+
+
+class CourseFit(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    description = models.TextField()
+
+
+class CourseSkill(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+
+class CourseStars(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    five_stars_count = models.IntegerField()
+    four_stars_count = models.IntegerField()
+    three_stars_count = models.IntegerField()
+    two_stars_count = models.IntegerField()
+    one_stars_count = models.IntegerField()
+
+
+class CourseComment(models.Model):
+    course_info = models.ForeignKey(CourseInfo, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField()
+    stars_count = models.IntegerField()
+
+
 class Module(models.Model):
     """
     Модуль курса
     """
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
 
     def __str__(self):
@@ -46,7 +90,7 @@ class Lesson(models.Model):
     """
     Урок модуля к курсу
     """
-    module_id = models.ForeignKey(Module, on_delete=models.CASCADE)
+    module = models.ForeignKey(Module, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
 
     def __str__(self):
@@ -57,7 +101,7 @@ class Step(models.Model):
     """
     Степ к уроку к модулю к курсу
     """
-    lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     content = models.TextField()
 
@@ -71,26 +115,19 @@ class Step(models.Model):
 #     """
 #     # Расширение класса User (login, password, first_name, last_name)
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=20)
-#     last_name = models.CharField(max_length=20)
-#     avatar_url = models.URLField()
-#     mail = models.EmailField(max_length=50)
-#     about_me_text = models.TextField()
+#     avatar_url = models.ImageField(default="http://localhost:8000/media/default.jpg")
+#     about_me_text = models.TextField(blank=True, default="")
 #
 #     def __str__(self):
-#         return f'{self.name}_{self.last_name}'
-#
-#     @property
-#     def user(self):
-#         return User.objects.get(pk=self.user_id)
+#         return f'{self.pk}'
 
 #
 # class UserToCourse(models.Model):
 #     """
 #     Пользователь к курсу. Какие курсы проходит пользователь
 #     """
-#     course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
-#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+#     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 #     progress_points = models.IntegerField()
 #
 #
@@ -98,21 +135,21 @@ class Step(models.Model):
 #     """
 #     Пользователь к Модулю. Какой модуль в курсе проходит пользователь
 #     """
-#     module_id = models.ForeignKey(Module, on_delete=models.CASCADE)
-#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     module = models.ForeignKey(Module, on_delete=models.CASCADE)
+#     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 #
 #
 # class UserToLesson(models.Model):
 #     """
 #     Пользователь к Уроку. Какой урок в курсе проходит пользователь
 #     """
-#     lesson_id = models.ForeignKey(Lesson, on_delete=models.CASCADE)
-#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+#     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
 #
 #
 # class UserToStep(models.Model):
 #     """
 #     Пользователь к Степу. Какой степ в курсе проходит пользователь
 #     """
-#     step_id = models.ForeignKey(Step, on_delete=models.CASCADE)
-#     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE)
+#     step = models.ForeignKey(Step, on_delete=models.CASCADE)
+#     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
