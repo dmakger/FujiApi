@@ -63,8 +63,8 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def get_info(self, pk):
-        course_info = CourseInfo.objects.get(course_id=pk)
-        return CourseInfoSerializer(course_info).data
+        queryset = CourseInfo.objects.get(course_id=pk)
+        return CourseInfoSerializer(queryset).data
 
 
 class CourseInfoSerializer(serializers.ModelSerializer):
@@ -75,23 +75,23 @@ class CourseInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseInfo
-        fields = ['goal_description', 'fit', 'skill', 'stars', 'comments']
+        fields = ['title_image', 'goal_description', 'fit', 'skill', 'stars', 'comments']
 
     def get_fit(self, course_info):
-        serializer = CourseFit.objects.filter(course_info_id=course_info.pk)
-        return CourseFitSerializer(serializer, many=True).data
+        queryset = CourseFit.objects.filter(course_info_id=course_info.pk)
+        return CourseFitSerializer(queryset, many=True).data
 
     def get_skill(self, course_info):
-        serializer = CourseSkill.objects.filter(course_info_id=course_info.pk)
-        return CourseSkillSerializer(serializer, many=True).data
+        queryset = CourseSkill.objects.filter(course_info_id=course_info.pk)
+        return CourseSkillSerializer(queryset, many=True).data
 
     def get_stars(self, course_info):
-        serializer = CourseStars.objects.get(course_info_id=course_info.pk)
-        return CourseStarsSerializer(serializer).data
+        queryset = CourseStars.objects.get(course_info_id=course_info.pk)
+        return CourseStarsSerializer(queryset).data
 
     def get_comments(self, course_info):
-        serializer = CourseComment.objects.filter(course_info_id=course_info.pk)
-        return CourseCommentSerializer(serializer, many=True).data
+        queryset = CourseComment.objects.filter(course_info_id=course_info.pk)
+        return CourseCommentSerializer(queryset, many=True).data
 
 
 class CourseFitSerializer(serializers.ModelSerializer):

@@ -11,6 +11,6 @@ urlpatterns = [
     path("", include(router.urls)),
     path("register/", views.RegisterView.as_view()),
     path("user/", views.UserView.as_view()),
-    path("course/", views.CourseViewSet.as_view({'get': 'list'})),
-    path("course/<int:pk>", views.CourseViewSet.as_view({'get': 'retrieve'})),
+    path("courses/", views.CourseViewSet.as_view({'get': 'list'})),
+    path("courses/<int:pk>/", views.CourseViewSet.as_view({'get': 'retrieve'})),
 ]

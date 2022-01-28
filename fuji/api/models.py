@@ -52,6 +52,7 @@ class CourseInfo(models.Model):
     Страница курса
     """
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title_image = models.ImageField(default="8.jpg")
     goal_description = models.TextField()
 
     def __str__(self):

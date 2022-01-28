@@ -18,6 +18,7 @@ class PageNumberSetPagination(pagination.PageNumberPagination):
 
 
 class CourseViewSet(viewsets.ModelViewSet):
+    lookup_field = 'slug'
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
@@ -32,7 +33,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk=None, *args, **kwargs):
         course = Course.objects.get(pk=pk)
         serializer = CourseSerializer(course)
-        course_info = serializer.get_info(pk)
+        course_info = serializer.get_info(course.pk)
         return Response({
             "course": serializer.data,
             "info": course_info
